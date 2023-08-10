@@ -26,11 +26,9 @@ resource "aws_security_group" "sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  tags = {
-    Name = merge(var.tags, {Name = "${var.name}-${var.env}-sg"})
-  }
-
+  tags = merge(var.tags, { Name = "${var.name}-${var.env}-sg" })
 }
+
 
 resource "aws_launch_template" "template" {
   name_prefix = "${var.name}-${var.env}-lt"
@@ -66,7 +64,7 @@ resource "aws_lb_target_group" "main" {
   port     = 8080
   protocol = "HTTP"
   vpc_id   = var.vpc_id
-  tags = merge(var.tags, {Name = "${var.name}-${var.env}-tg"})
+  tags     = merge(var.tags, {Name = "${var.name}-${var.env}-tg"})
 }
 
 
