@@ -18,6 +18,13 @@ resource "aws_security_group" "sg" {
     to_port   = 22
     cidr_blocks = var.bastion_cidr
   }
+  ingress {
+    description = "PROMETHEUS"
+    from_port = 9100
+    protocol  = "tcp"
+    to_port   = 9100
+    cidr_blocks = var.monitor_cidr
+  }
   egress {
     from_port = 0
     protocol  = "-1"
